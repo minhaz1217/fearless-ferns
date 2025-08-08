@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import html
+import pyhtml
+
 
 def cleanup(text):
     """
-    A function that cleans given text, escapes html characters, and replaces html entities like `&gt;`
+    A function that cleans given text and escapes html characters
     """
-    return text  # no implementation for now
+    return html.escape(text)
 
 
 def element(tagname):

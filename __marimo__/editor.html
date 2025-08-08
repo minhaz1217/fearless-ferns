@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/apple-touch-icon.png" />
+    <link rel="manifest" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        var scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          var element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          var hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          var newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((entries) => {
+          setHeight();
+        });
+        resizeObserver.observe(obj.contentWindow.document.body);
+      }
+    </script>
+    <marimo-filename hidden>editor.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>editor</title>
+    <script type="module" crossorigin crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/index-Bcef--wg.js"></script>
+    <link rel="stylesheet" crossorigin crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.14.16/dist/assets/index-B-OhZVlA.css">
+  
+<script data-marimo="true">
+    window.__MARIMO_STATIC__ = {};
+    window.__MARIMO_STATIC__.files = {};
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "editor.py",
+            "mode": "read",
+            "version": "0.14.16",
+            "serverToken": "static",
+            "config": {"completion": {"activate_on_typing": true, "copilot": false}, "display": {"cell_output": "above", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": true}}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": true, "auto_reload": "off", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "after_delay", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": true},
+            "notebook": {"cells": [{"code": "import marimo as mo", "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e", "config": {"column": null, "disabled": false, "hide_code": false}, "id": "Hbol", "name": "_"}, {"code": "DEFAULT_CODE = '''\nfrom __future__ import annotations\n\n\ndef cleanup(text):\n    \"\"\"\n    A function that cleans given text, escapes html characters, and replaces html entities like `&gt;`\n    \"\"\"\n    return text  # no implementation for now\n\n\ndef element(tagname):\n    \"\"\"\n    A simple helper function for wrapping stuff in html tag\n\n    USAGE: element(\"h1\")(\"Hello world!\")\n    \"\"\"\n    return lambda text: \"<{0}>{1}</{0}>\".format(tagname, cleanup(text))\n\n\nh1 = element(\"h1\")\n\n\ndef helloworld():\n    return h1(\"Hello World!\")\n\n\nif __name__ == \"__main__\":\n    print(helloworld())\n\n'''", "code_hash": "ae1cd4b016e8e882f82f07f1a065ce39", "config": {"column": null, "disabled": false, "hide_code": true}, "id": "lWWG", "name": "_"}, {"code": "editor = mo.ui.code_editor(\n    value=DEFAULT_CODE,\n    language=\"python\",\n    theme=\"dark\",\n    min_height=100,\n)", "code_hash": "de112c9dfbeae346cc87e0b1c59b7477", "config": {"column": null, "disabled": false, "hide_code": false}, "id": "oPXQ", "name": "_"}, {"code": "md = mo.md(\"Hello World!\")", "code_hash": "44956b553a3de5460d49241c1ccc6fb7", "config": {"column": null, "disabled": false, "hide_code": false}, "id": "TDaQ", "name": "_"}, {"code": "mo.hstack([\n    mo.vstack([editor]),\n    mo.vstack([md]),\n], widths=[1, 1])", "code_hash": "46b7e3bad03706487e2f0866a57c3ecf", "config": {"column": null, "disabled": false, "hide_code": false}, "id": "bsjd", "name": "_"}, {"code": "", "code_hash": null, "config": {"column": null, "disabled": false, "hide_code": false}, "id": "FqDq", "name": "_"}], "metadata": {"marimo_version": "0.14.16"}, "version": "1"},
+            "session": {"cells": [{"code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e", "console": [], "id": "Hbol", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "ae1cd4b016e8e882f82f07f1a065ce39", "console": [], "id": "lWWG", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "de112c9dfbeae346cc87e0b1c59b7477", "console": [], "id": "oPXQ", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "44956b553a3de5460d49241c1ccc6fb7", "console": [], "id": "TDaQ", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "46b7e3bad03706487e2f0866a57c3ecf", "console": [], "id": "bsjd", "outputs": [{"data": {"text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: space-between;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><div style='flex: 1'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='oPXQ-0' random-id='0aef9421-93db-13be-7573-23822be03e4a'><marimo-code-editor data-initial-value='&quot;&#92;nfrom __future__ import annotations&#92;n&#92;n&#92;ndef cleanup(text):&#92;n    &#92;&quot;&#92;&quot;&#92;&quot;&#92;n    A function that cleans given text, escapes html characters, and replaces html entities like `&amp;gt;`&#92;n    &#92;&quot;&#92;&quot;&#92;&quot;&#92;n    return text  # no implementation for now&#92;n&#92;n&#92;ndef element(tagname):&#92;n    &#92;&quot;&#92;&quot;&#92;&quot;&#92;n    A simple helper function for wrapping stuff in html tag&#92;n&#92;n    USAGE: element(&#92;&quot;h1&#92;&quot;)(&#92;&quot;Hello world!&#92;&quot;)&#92;n    &#92;&quot;&#92;&quot;&#92;&quot;&#92;n    return lambda text: &#92;&quot;&lt;{0}&gt;{1}&lt;/{0}&gt;&#92;&quot;.format(tagname, cleanup(text))&#92;n&#92;n&#92;nh1 = element(&#92;&quot;h1&#92;&quot;)&#92;n&#92;n&#92;ndef helloworld():&#92;n    return h1(&#92;&quot;Hello World!&#92;&quot;)&#92;n&#92;n&#92;nif __name__ == &#92;&quot;__main__&#92;&quot;:&#92;n    print(helloworld())&#92;n&#92;n&quot;' data-label='null' data-language='&quot;python&quot;' data-placeholder='&quot;&quot;' data-theme='&quot;dark&quot;' data-disabled='false' data-min-height='100' data-show-copy-button='true' data-debounce='false'></marimo-code-editor></marimo-ui-element></div></div><div style='flex: 1'><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert\"><span class=\"paragraph\">Hello World!</span></span></div></div></div>"}, "type": "data"}]}, {"code_hash": null, "console": [], "id": "FqDq", "outputs": []}], "metadata": {"marimo_version": "0.14.16"}, "version": "1"},
+            "runtimeConfig": null,
+        };
+    </script>
+  
+<marimo-code hidden="">
+    import%20marimo%0A%0A__generated_with%20%3D%20%220.14.16%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20return%20(mo%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_()%3A%0A%20%20%20%20DEFAULT_CODE%20%3D%20'''%0A%20%20%20%20from%20__future__%20import%20annotations%0A%0A%0A%20%20%20%20def%20cleanup(text)%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20A%20function%20that%20cleans%20given%20text%2C%20escapes%20html%20characters%2C%20and%20replaces%20html%20entities%20like%20%60%26gt%3B%60%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20return%20text%20%20%23%20no%20implementation%20for%20now%0A%0A%0A%20%20%20%20def%20element(tagname)%3A%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20A%20simple%20helper%20function%20for%20wrapping%20stuff%20in%20html%20tag%0A%0A%20%20%20%20%20%20%20%20USAGE%3A%20element(%22h1%22)(%22Hello%20world!%22)%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20return%20lambda%20text%3A%20%22%3C%7B0%7D%3E%7B1%7D%3C%2F%7B0%7D%3E%22.format(tagname%2C%20cleanup(text))%0A%0A%0A%20%20%20%20h1%20%3D%20element(%22h1%22)%0A%0A%0A%20%20%20%20def%20helloworld()%3A%0A%20%20%20%20%20%20%20%20return%20h1(%22Hello%20World!%22)%0A%0A%0A%20%20%20%20if%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20%20%20%20%20print(helloworld())%0A%0A%20%20%20%20'''%0A%20%20%20%20return%20(DEFAULT_CODE%2C)%0A%0A%0A%40app.cell%0Adef%20_(DEFAULT_CODE%2C%20mo)%3A%0A%20%20%20%20editor%20%3D%20mo.ui.code_editor(%0A%20%20%20%20%20%20%20%20value%3DDEFAULT_CODE%2C%0A%20%20%20%20%20%20%20%20language%3D%22python%22%2C%0A%20%20%20%20%20%20%20%20theme%3D%22dark%22%2C%0A%20%20%20%20%20%20%20%20min_height%3D100%2C%0A%20%20%20%20%20%20%20%20max_height%3D100%2C%0A%0A%20%20%20%20)%0A%20%20%20%20return%20(editor%2C)%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20md%20%3D%20mo.md(%22Hello%20World!%22)%0A%20%20%20%20return%20(md%2C)%0A%0A%0A%40app.cell%0Adef%20_(editor%2C%20md%2C%20mo)%3A%0A%20%20%20%20mo.hstack(%5B%0A%20%20%20%20%20%20%20%20mo.vstack(%5Beditor%5D)%2C%0A%20%20%20%20%20%20%20%20mo.vstack(%5Bmd%5D)%2C%0A%20%20%20%20%5D%2C%20widths%3D%5B1%2C%201%5D)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20mo.Html%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A
+</marimo-code>
+
+<marimo-code-hash hidden="">899a0751f06805dc90de9bfbeb943cc5a38d74805e885ee80a99b01d766f010d</marimo-code-hash>
+</body>
+</html>
