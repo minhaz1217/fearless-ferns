@@ -151,6 +151,11 @@ Once the environment is created and activated, use this command to install the d
 pip install --group dev
 ```
 
+if you get `no such option: --group` update your pip, you can update your pip by running this command
+```
+python -m pip install --upgrade pip
+```
+
 #### Exiting the environment
 
 Interestingly enough, it is the same for every platform.
