@@ -4,7 +4,7 @@ import platform
 
 from nicegui import ui
 
-import _examples, home, editor
+import _examples, homepage, editor
 
 
 # See https://nicegui.io/documentation/colors#custom_colors
@@ -31,7 +31,7 @@ def index():
 
     # See https://nicegui.io/documentation/sub_pages
     ui.sub_pages({
-        '/': home.index,
+        '/': homepage.index,
         '/editor': editor.index,
         '/_widgets': _examples.index,
     }).classes('h-[90vh] w-full')
