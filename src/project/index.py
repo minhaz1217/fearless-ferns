@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import platform
+import uuid
 
 from nicegui import ui
 
@@ -40,6 +41,10 @@ def index():
 ui.run(
     # [Errno 13] error while attempting to bind on address ('0.0.0.0', 8080): [winerror 10013] an attempt was made to access a socket in a way forbidden by its access permissions
     port=8081,  # default is 8080
+
     # NOTE: On Windows reload must be disabled to make asyncio.create_subprocess_exec work (see https://github.com/zauberzeug/nicegui/issues/486)
     # reload=platform.system() != "Windows",
+
+    # required to enable `ui.storage.user`
+    storage_secret=str(uuid.uuid4()),
 )
