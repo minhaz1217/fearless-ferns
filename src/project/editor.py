@@ -40,19 +40,10 @@ async def index():
 
     with ui.splitter().classes("size-full") as splitter:
         with splitter.before:
-            with ui.column().classes("items-center size-full"):
-                editor = (
-                    CustomEditor()
-                    .apply_styles()
-                    .bind_value(app.storage.tab, "editor.value")
-                    .on(
-                        "save",
-                        lambda e: op.setitem(app.storage.user, "editor.value", e.args)
-                        or ui.notify("Content is saved", type="positive"),
-                    )
-                )
+            with ui.column(align_items='center').classes('size-full'):
+                editor = CustomEditor().apply_styles().bind_value(app.storage.tab, 'editor.value')\
+                    .on('save', lambda e: op.setitem(app.storage.user, 'editor.value', e.args) or ui.notify("Content is saved", type='positive'))
         with splitter.after:
-            with ui.column().classes("items-center size-full gap-8"):
-                ui.label(editor.value).bind_text_from(editor, "value")
-                transformed = ui.label(editor.value).bind_text_from(editor, "value", backward=html2text)
-                ui.mermaid(editor.value).bind_content_from(transformed, "text")
+            with ui.column(align_items='center').classes('justify-center size-full'):
+                ui.mermaid(editor.value).bind_content_from(editor, 'value', backward=html2text)
+
