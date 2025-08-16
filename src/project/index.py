@@ -1,14 +1,11 @@
 from __future__ import annotations
 
-import platform
 import uuid
 
-from nicegui import ui
-
 import _examples
-import homepage
 import editor
-
+import homepage
+from nicegui import ui
 
 # See https://nicegui.io/documentation/colors#custom_colors
 ui.colors(
@@ -38,7 +35,7 @@ def index():
             "/": homepage.index,
             "/editor": editor.index,
             "/_widgets": _examples.index,
-        }
+        },
     ).classes("h-[90vh] w-full")
 
 
