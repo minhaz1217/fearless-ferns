@@ -72,7 +72,7 @@ async def index():
                 (
                     ElementFilter(marker="emoji-content")
                     .within(marker="emoji-keyboard")
-                    .classes("overflow-y-scroll p-4 justify-between")
+                    .classes("overflow-y-scroll justify-start")
                     # These two lines hide the vertical scroll bar and prevent overscrolling
                     .style("scrollbar-width: none;")
                     .classes("[&::-webkit-scrollbar]:hidden overscroll-contain")
