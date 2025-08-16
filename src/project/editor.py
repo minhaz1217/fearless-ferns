@@ -10,7 +10,7 @@ from html2text import html2text
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
-class CustomEditor(ValueElement, DisableableElement, component="components/editor.vue", default_classes="nicegui-editor"):
+class CustomEditor(ValueElement, DisableableElement, component="components/extended_editor.vue", default_classes="nicegui-editor"):
     VALUE_PROP: str = "value"
     LOOPBACK = False
 
@@ -41,8 +41,16 @@ async def index():
     with ui.splitter().classes("size-full") as splitter:
         with splitter.before:
             with ui.column(align_items='center').classes('size-full'):
-                editor = CustomEditor().apply_styles().bind_value(app.storage.tab, 'editor.value')\
-                    .on('save', lambda e: op.setitem(app.storage.user, 'editor.value', e.args) or ui.notify("Content is saved", type='positive'))
+                editor = (
+                    CustomEditor()
+                    .apply_styles()
+                    .bind_value(app.storage.tab, 'editor.value')
+                    .on('save', lambda e: op.setitem(
+                        app.storage.user, 'editor.value', e.args)
+                        or ui.notify("Content is saved", type='positive')
+                    ).on('toggle:keyboard', lambda e: ui.notify(e.args))
+                )
+                
         with splitter.after:
             with ui.column(align_items='center').classes('justify-center size-full'):
                 ui.mermaid(editor.value).bind_content_from(editor, 'value', backward=html2text)
