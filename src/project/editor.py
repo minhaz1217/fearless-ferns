@@ -1,30 +1,35 @@
-
 from nicegui import ui
-from typing import List, Dict
-from nicegui.events import Handler, ValueChangeEventArguments
 from nicegui.elements.mixins.disableable_element import DisableableElement
 from nicegui.elements.mixins.value_element import ValueElement
+from nicegui.events import Handler, ValueChangeEventArguments
 
 
 # ===============================
 # Custom Editor
 # ===============================
-class CustomEditor(ValueElement, DisableableElement, component='editor.vue', default_classes='nicegui-editor'):
-    VALUE_PROP: str = 'value'
+class CustomEditor(ValueElement, DisableableElement, component="editor.vue", default_classes="nicegui-editor"):
+    VALUE_PROP: str = "value"
     LOOPBACK = False
 
-    def __init__(self, *, placeholder: str | None = None, value: str = '', on_change: Handler[ValueChangeEventArguments] | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        placeholder: str | None = None,
+        value: str = "",
+        on_change: Handler[ValueChangeEventArguments] | None = None,
+    ) -> None:
         super().__init__(value=value, on_value_change=on_change)
         if placeholder is not None:
-            self._props['placeholder'] = placeholder
+            self._props["placeholder"] = placeholder
 
     def _handle_value_change(self, value) -> None:
         super()._handle_value_change(value)
         if self._send_update_on_value_change:
-            self.run_method('updateValue')
+            self.run_method("updateValue")
 
     def apply_styles(self):
-        return self.classes('size-full flex flex-col items-stretch').props('content-class="grow"')
+        return self.classes("size-full flex flex-col items-stretch").props('content-class="grow"')
+
 
 # ===============================
 # Emoji to shape mapping
@@ -35,10 +40,10 @@ EMOJI_TO_SHAPE = {
     "🟢": lambda nid, label: f"{nid}(({label}))",  # Oval
     "🔴": lambda nid, label: f"{nid}(({label}))",  # Oval
     "⌨️": lambda nid, label: f"{nid}[/ {label} /]",  # Parallelogram
-    "🛠": lambda nid, label: f"{nid}[{label}]",      # Rectangle
-    "🔍": lambda nid, label: f"{nid}{{{label}}}",   # Diamond
+    "🛠": lambda nid, label: f"{nid}[{label}]",  # Rectangle
+    "🔍": lambda nid, label: f"{nid}{{{label}}}",  # Diamond
     "✅": "YES",  # edge label
-    "❌": "NO",   # edge label
+    "❌": "NO",  # edge label
 }
 
 EMOJI_TOOLTIPS = {
@@ -52,15 +57,15 @@ EMOJI_TOOLTIPS = {
 }
 
 
-
 # ===============================
 # State
 # ===============================
-emoji_chain: List[Dict] = []  # Each item: {"emoji": str, "label": str, "size": int}
+emoji_chain: list[dict] = []  # Each item: {"emoji": str, "label": str, "size": int}
 
 # ===============================
 # Functions
 # ===============================
+
 
 def prompt_for_label_and_size(emoji: str):
     """Ask the user for label text and size before adding a shape."""
@@ -73,10 +78,7 @@ def prompt_for_label_and_size(emoji: str):
         with ui.row():
             ui.button(
                 "OK",
-                on_click=lambda: (
-                    add_emoji(emoji, label_input.value or emoji, size_input.value),
-                    dialog.close()
-                )
+                on_click=lambda: (add_emoji(emoji, label_input.value or emoji, size_input.value), dialog.close()),
             )
             ui.button("Cancel", on_click=dialog.close)
 
@@ -98,7 +100,7 @@ def update_diagram():
     diagram.content = mermaid_code  # send raw Mermaid code
 
 
-def parse_emoji_chain(chain: List[Dict]) -> str:
+def parse_emoji_chain(chain: list[dict]) -> str:
     mermaid_lines = ["flowchart LR"]  # Left-to-Right flow
     node_count = 0
     prev_node = None
@@ -152,14 +154,12 @@ async def index():
 
     await ui.context.client.connected(timeout=10.0)
 
-
-    with ui.splitter().classes('size-full') as splitter:
+    with ui.splitter().classes("size-full") as splitter:
         # LEFT: CustomEditor
         with splitter.before:
             editor = CustomEditor(placeholder="Type emojis here...").apply_styles()
 
     with splitter.after:
-
         with ui.row():
             for emoji, tooltip in EMOJI_TOOLTIPS.items():
                 if emoji in ("✅", "❌"):
@@ -174,14 +174,3 @@ async def index():
         global diagram
         diagram = ui.mermaid("")
         update_diagram()
-
-
-
-
-
-
-
-
-
-
-
