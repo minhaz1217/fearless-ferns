@@ -7,11 +7,11 @@ from nicegui.elements.mixins.disableable_element import DisableableElement
 from nicegui.elements.mixins.value_element import ValueElement
 from nicegui.events import Handler, ValueChangeEventArguments
 
-from emoji_keyboard import emoji_keyboard
+from project.widgets.emoji_keyboard import emoji_keyboard
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
-class CustomEditor(ui.editor, component="components/extended_editor.vue"):
+class CustomEditor(ui.editor, component="../components/extended_editor.vue"):
     def apply_styles(self):
         return self.classes("size-full flex flex-nowrap flex-col items-stretch").props('content-class="grow"')
 

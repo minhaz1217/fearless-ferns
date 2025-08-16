@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import uuid
 
-import _examples
-import editor
-import homepage
+import project.pages._examples as _examples
+import project.pages.editor as editor
+import project.pages.homepage as homepage
 from nicegui import ui
 
 # See https://nicegui.io/documentation/colors#custom_colors
