@@ -150,7 +150,7 @@ export default {
     insertTextAtCursor(text) {
       const editorRef = this.$refs.editor;
       if (editorRef && editorRef.runCmd) {
-        editorRef.runCmd('insertText', text);
+        editorRef.runCmd("insertText", text);
       }
     },
   },

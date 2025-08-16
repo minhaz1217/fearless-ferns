@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import operator as op
-
 from nicegui import ui, app
 from nicegui.events import Handler, ValueChangeEventArguments
 from nicegui.elements.mixins.disableable_element import DisableableElement
@@ -67,10 +65,15 @@ async def index():
                     .on("save", on_save)
                     .on("toggle:keyboard", lambda e: keyboard.set_visibility(e.args))
                 )
-                keyboard = emoji_keyboard(on_click=insert_emoji).classes(
-                    "h-2/5 overflow-y-scroll p-4 absolute bottom-0 inset-x-0 border justify-between bg-white"
-                # This line hides the vertical scroll bar and prevents overscrolling
-                ).style('scrollbar-width: none;').classes('[&::-webkit-scrollbar]:hidden overscroll-contain')
+                keyboard = (
+                    emoji_keyboard(on_click=insert_emoji)
+                    .classes(
+                        "h-2/5 overflow-y-scroll p-4 absolute bottom-0 inset-x-0 border justify-between bg-white"
+                        # This line hides the vertical scroll bar and prevents overscrolling
+                    )
+                    .style("scrollbar-width: none;")
+                    .classes("[&::-webkit-scrollbar]:hidden overscroll-contain")
+                )
         with splitter.after:
             with ui.column(align_items="center").classes("justify-center size-full"):
                 ui.mermaid(editor.value).bind_content_from(editor, "value", backward=html2text)
