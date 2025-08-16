@@ -36,7 +36,7 @@ def emoji_keyboard(
             for key, tab in inner_tabs.items():
                 with ui.tab_panel(tab), ui.row().mark("emoji-content"):
                     for emo in emojies[key].split():
-                        handler = partial(on_click, emo) if on_click is not None else lambda: None
+                        handler = partial(on_click, emo) if on_click is not None else None
                         with ui.button(emo, on_click=handler).props("outline rounded color=black"):
                             ui.tooltip(emoji.demojize(emo))
 
