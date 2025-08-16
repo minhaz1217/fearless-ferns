@@ -40,8 +40,8 @@
         },
       ],
       ['bold', 'italic', 'strike', 'underline', 'subscript', 'superscript'],
-      ['token', 'hr', 'link', 'emoji'],
-      ['print', 'fullscreen'],
+      ['token', 'hr', 'link'],
+      ['print', 'fullscreen', 'emoji'],
       [
         {
           label: $q.lang.editor.formatting,
