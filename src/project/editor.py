@@ -10,7 +10,7 @@ from html2text import html2text
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
-class CustomEditor(ValueElement, DisableableElement, component="editor.vue", default_classes="nicegui-editor"):
+class CustomEditor(ValueElement, DisableableElement, component="components/editor.vue", default_classes="nicegui-editor"):
     VALUE_PROP: str = "value"
     LOOPBACK = False
 
