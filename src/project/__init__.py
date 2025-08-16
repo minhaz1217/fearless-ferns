@@ -1,26 +1,24 @@
 from __future__ import annotations
 
 
-def cleanup(text):
-    """
-    A function that cleans given text, escapes html characters, and replaces html entities like `&gt;`
-    """
+def cleanup(text: str) -> str:
+    """Clean given text, escapes html characters, and replaces html entities like `&gt;`."""
     return text  # no implementation for now
 
 
-def element(tagname):
-    """
-    A simple helper function for wrapping stuff in html tag
+def element(tagname: str) -> str:
+    """Wrap stuff in html tag.
 
     USAGE: element("h1")("Hello world!")
     """
-    return lambda text: "<{0}>{1}</{0}>".format(tagname, cleanup(text))
+    return lambda text: f"<{tagname}>{cleanup(text)}</{tagname}>"
 
 
 h1 = element("h1")
 
 
-def helloworld():
+def helloworld() -> str:
+    """Test method."""
     return h1("Hello World!")
 
 
