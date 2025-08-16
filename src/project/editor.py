@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from nicegui import ui, app
+from nicegui import ui, app, ElementFilter
 from nicegui.events import Handler, ValueChangeEventArguments
 from nicegui.elements.mixins.disableable_element import DisableableElement
 from nicegui.elements.mixins.value_element import ValueElement
@@ -65,12 +65,15 @@ async def index():
                     .on("save", on_save)
                     .on("toggle:keyboard", lambda e: keyboard.set_visibility(e.args))
                 )
-                keyboard = (
-                    emoji_keyboard(on_click=insert_emoji)
-                    .classes(
-                        "h-2/5 overflow-y-scroll p-4 absolute bottom-0 inset-x-0 border justify-between bg-white"
-                        # This line hides the vertical scroll bar and prevents overscrolling
-                    )
+                keyboard = emoji_keyboard(on_click=insert_emoji).classes(
+                    "h-2/5 absolute bottom-0 inset-x-0 border bg-white"
+                )
+
+                (
+                    ElementFilter(marker="emoji-content")
+                    .within(marker="emoji-keyboard")
+                    .classes("overflow-y-scroll p-4 justify-between")
+                    # These two lines hide the vertical scroll bar and prevent overscrolling
                     .style("scrollbar-width: none;")
                     .classes("[&::-webkit-scrollbar]:hidden overscroll-contain")
                 )

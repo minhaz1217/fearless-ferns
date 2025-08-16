@@ -18,7 +18,7 @@
         handler: uploadIt,
       },
       emoji: {
-        tip: 'toggle emoji Keyboard',
+        tip: 'Toggle Emoji Keyboard',
         icon: 'add_reaction',
         handler: toggleKeyboard,
       },
