@@ -11,6 +11,7 @@ class CustomEditor(ValueElement, DisableableElement, component="editor.vue", def
     VALUE_PROP: str = "value"
     LOOPBACK = False
 
+
     def __init__(
         self,
         *,
@@ -153,7 +154,6 @@ async def index():
     ui.label("Emoji Flowchart Editor").classes("text-h4 font-bold mb-4")
 
     await ui.context.client.connected(timeout=10.0)
-
     with ui.splitter().classes("size-full") as splitter:
         # LEFT: CustomEditor
         with splitter.before:
