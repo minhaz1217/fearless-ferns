@@ -10,36 +10,7 @@ from emoji_keyboard import emoji_keyboard
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
-class CustomEditor(
-    ValueElement, DisableableElement, component="components/extended_editor.vue", default_classes="nicegui-editor"
-):
-    VALUE_PROP: str = "value"
-    LOOPBACK = False
-
-    def __init__(
-        self,
-        *,
-        placeholder: str | None = None,
-        value: str = "",
-        on_change: Handler[ValueChangeEventArguments] | None = None,
-    ) -> None:
-        """Editor
-
-        A WYSIWYG editor based on `Quasar's QEditor <https://quasar.dev/vue-components/editor>`_.
-        The value is a string containing the formatted text as HTML code.
-
-        :param value: initial value
-        :param on_change: callback to be invoked when the value changes
-        """
-        super().__init__(value=value, on_value_change=on_change)
-        if placeholder is not None:
-            self._props["placeholder"] = placeholder
-
-    def _handle_value_change(self, value) -> None:
-        super()._handle_value_change(value)
-        if self._send_update_on_value_change:
-            self.run_method("updateValue")
-
+class CustomEditor(ui.editor, component="components/extended_editor.vue"):
     def apply_styles(self):
         return self.classes("size-full flex flex-nowrap flex-col items-stretch").props('content-class="grow"')
 
