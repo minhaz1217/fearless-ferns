@@ -7,6 +7,8 @@ from typing import Literal, TypeAlias
 
 import spacy
 
+from .cleanup import clean_emoji
+
 
 # Smallest model that supports `similarity` method
 _spacy_model = "en_core_web_md"
@@ -48,7 +50,7 @@ def _emoji_docs(category):
 def identify_emoji(emoji) -> tuple[tuple[EmojiCategory, float], tuple[EmojiCategory, float]]:
     """Return top-2 matching emoji categories for the given emoji."""
     # removing colons and replacing underscores
-    emo = emoji[1:-1].replace("_", " ")
+    emo = clean_emoji(emoji, replace_underscores=True)
     emo_doc = nlp(emo)
 
     result: dict[EmojiCategory, float] = {
