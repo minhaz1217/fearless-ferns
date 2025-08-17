@@ -7,6 +7,7 @@ import project.pages.editor as editor
 import project.pages.homepage as homepage
 from nicegui import ui
 
+
 # See https://nicegui.io/documentation/colors#custom_colors
 ui.colors(
     primary="#5898d4",  # not applied

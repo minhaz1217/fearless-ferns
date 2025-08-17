@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+from typing import Callable
+
 
 def cleanup(text: str) -> str:
     """Clean given text, escapes html characters, and replaces html entities like `&gt;`."""
     return text  # no implementation for now
 
 
-def element(tagname: str) -> str:
+def element(tagname: str) -> Callable[[str], str]:
     """Wrap stuff in html tag.
 
     USAGE: element("h1")("Hello world!")
