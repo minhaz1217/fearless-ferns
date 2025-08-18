@@ -1,16 +1,9 @@
 from __future__ import annotations
 
-from html2text import html2text
-from nicegui import ui, app, ElementFilter
-from nicegui.events import Handler, ValueChangeEventArguments
-from nicegui.elements.mixins.content_element import ContentElement
-from nicegui.elements.mixins.disableable_element import DisableableElement
-from nicegui.elements.mixins.value_element import ValueElement
-from nicegui.events import Handler, ValueChangeEventArguments
+from nicegui import ElementFilter, app, ui
 
-from project.widgets.emoji_keyboard import emoji_keyboard
 from project.interpreter import interpret
-
+from project.widgets.emoji_keyboard import emoji_keyboard
 
 DEBUG = True
 
@@ -49,7 +42,7 @@ async def index():
                     .on("toggle:keyboard", lambda e: keyboard.set_visibility(e.args))
                 )
                 keyboard = emoji_keyboard(on_click=insert_emoji).classes(
-                    "h-2/5 absolute bottom-0 inset-x-0 border bg-white"
+                    "h-2/5 absolute bottom-0 inset-x-0 border bg-white",
                 )
 
                 (

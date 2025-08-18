@@ -2,10 +2,9 @@ from __future__ import annotations
 
 import uuid
 
-import _examples
-import editor
-import homepage
 from nicegui import ui
+
+from project.pages import _examples, editor, homepage
 
 # See https://nicegui.io/documentation/colors#custom_colors
 ui.colors(
@@ -23,7 +22,9 @@ def index() -> None:
     }
     ui.context.client.content.classes("p-0")
 
-    with ui.header().props("elevated").classes("flex py-0 items-center justify-between"):
+    with (
+        ui.header().props("elevated").classes("flex py-0 items-center justify-between")
+    ):
         with ui.row().classes("items-center gap-2"):
             ui.image(
                 "https://icon-library.com/images/python-icon-png/python-icon-png-2.jpg",

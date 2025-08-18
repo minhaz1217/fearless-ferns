@@ -9,7 +9,6 @@ import spacy
 
 from .cleanup import clean_emoji
 
-
 # Smallest model that supports `similarity` method
 _spacy_model = "en_core_web_md"
 
@@ -22,12 +21,7 @@ except OSError:
 
 
 EmojiCategory: TypeAlias = (
-    Literal["positive"]
-    | Literal["negative"]
-    | Literal["animal"]
-    | Literal["food"]
-    | Literal["gesture"]
-    | Literal["heart"]
+    Literal["positive", "negative", "animal", "food", "gesture", "heart"]
 )
 VALUES_SEPARATOR = ", "
 
@@ -138,8 +132,7 @@ def identify_shape(text: str) -> tuple[tuple[str, float], tuple[str, float]]:
 
 
 def summarize_to_phrase(sentence: str) -> str:
-    """
-    Cuts a long sentence into a small phrase using its grammer.
+    """Cuts a long sentence into a small phrase using its grammer.
     """
     doc = nlp(sentence)
 

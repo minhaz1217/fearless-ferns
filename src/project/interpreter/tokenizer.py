@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Generator
+from collections.abc import Generator
 
 from .models import Token
 
@@ -9,10 +9,9 @@ from .models import Token
 def group(pat: str, *, name="", capture=False) -> str:
     if name:
         return f"(?P<{name}>{pat})"
-    elif capture:
+    if capture:
         return f"({pat})"
-    else:
-        return f"(?:{pat})"
+    return f"(?:{pat})"
 
 
 def optional(pat: str) -> str:

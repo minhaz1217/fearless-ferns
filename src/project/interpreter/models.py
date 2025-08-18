@@ -24,7 +24,7 @@ class Emote(NamedTuple):
     def join_words(cls, emotes: list[Emote]) -> Emote:
         def reduce_emotes(emote1: Emote, emote2: Emote) -> Emote:
             if emote1.is_emoji():
-                raise TypeError()
+                raise TypeError
 
             if emote2.is_emoji():
                 return emote1

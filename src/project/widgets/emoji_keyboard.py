@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-from functools import partial
 import random
-from typing import Callable
+from collections.abc import Callable
+from functools import partial
 
+import emoji
 from nicegui import ui
 from nicegui.events import ClickEventArguments
-import emoji
-
 
 # Changed lists to string because they become ugly when formatted
 emojies = {

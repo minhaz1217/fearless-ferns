@@ -1,15 +1,13 @@
 from __future__ import annotations
 
-from functools import reduce
 import io
-from itertools import takewhile
-import operator as op
+from functools import reduce
 
 import emoji
 
-from .cleanup import cleanup, clean_emoji
+from .cleanup import clean_emoji, cleanup
 from .models import Emote
-from .nlp import identify_shape, get_shape, summarize_to_phrase
+from .nlp import get_shape, identify_shape, summarize_to_phrase
 from .parse import parse
 
 
@@ -60,7 +58,7 @@ def interpret(content: str):
         if len(emojies) == 0:
             continue
         # One emoji per line defines the node
-        elif len(emojies) == 1:
+        if len(emojies) == 1:
             (emo,) = emojies
             id_ = id_from_emoji(emo.value)
             joined = Emote.join_words(words)
@@ -89,5 +87,4 @@ def choose_shape(line: str) -> str | None:
     (cat, rat), _ = identify_shape(line)
     if rat >= 0.80:
         return get_shape(cat)
-    else:
-        return None
+    return None
