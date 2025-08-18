@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import random
 import re
 from typing import TYPE_CHECKING
 
@@ -18,13 +17,8 @@ def parse(content: str, *, anger: float = 10.0) -> Generator[Emote, None, None]:
     emph = False  # emphasis: italic or underline
     strike = False
     number = 1
-    last_token = None
-    reset_number = False
 
     for token in tokenize(content):
-        if last_token is None:
-            last_token = token
-
         match token:
             case Token(type="B"):
                 bold = not bold
@@ -34,24 +28,15 @@ def parse(content: str, *, anger: float = 10.0) -> Generator[Emote, None, None]:
                 strike = not strike
 
             case Token(value, type="E"):
-                if reset_number and last_token.type != "E":
-                    number = 1
-
                 anger = emoji_relief(anger, value)
                 yield Emote(value, anger, number, bold, emph, strike)
-                reset_number = bool(random.choice(list(range(2))))
 
             case Token(value, type="W"):
-                if reset_number and last_token.type != "W":
-                    number = 1
-
                 anger = word_relief(anger, value)
                 yield Emote(value, anger, number, bold, emph, strike)
-                reset_number = bool(random.choice(list(range(3))))
 
             case Token(value, type="N"):
                 try:
-                    reset_number = False
                     number = round(float(value))
                 except ValueError:
                     number = 0
@@ -59,10 +44,6 @@ def parse(content: str, *, anger: float = 10.0) -> Generator[Emote, None, None]:
 
             case Token(value, type="U"):
                 anger += len(re.sub(r"\s", "", value))
-            case _:
-                anger += 10
-
-        last_token = token
 
 
 emoji_relief_factor: dict[EmojiCategory, float] = {
