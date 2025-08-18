@@ -9,10 +9,22 @@ from project.models.Emojis import Emojis
 
 
 class InterpretError(ValueError):
-    """Raised when the code in the editor is malformed"""
+    """Raised when the code in the editor is malformed."""
 
 
-def interpret(content: str):
+def interpret(content: str) -> str:
+    """Interpret user input in the editor and generate mermaid code.
+
+    Args:
+        content (str): Input by the user
+
+    Raises:
+        InterpretError: when user input is malformed
+
+    Returns:
+        str: mermaid code
+
+    """
     flowchart_direction_emojis = [
         Emojis.top_to_bottom,
         Emojis.bottom_to_top,
@@ -120,7 +132,7 @@ def interpret(content: str):
     flow_chart = []
     lines = html2text.html2text(content).splitlines()
     error_message = ""
-    all_emoji: dict[str, str] = dict()
+    all_emoji: dict[str, str] = {}
 
     if len(lines) > 0:
         first_line = lines[0].strip()
@@ -167,6 +179,7 @@ def interpret(content: str):
                     + make_edge(line[first_edge_index : last_edge_index + 1].strip())
                     + make_node(right_half),
                 )
+
     f = io.StringIO()
     if len(flow_chart) > 0:
         f.write(str.join("\n", flow_chart))

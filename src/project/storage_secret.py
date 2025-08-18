@@ -26,32 +26,38 @@ def _new_token() -> str:
     return str(uuid.uuid4())
 
 
-def _store_token(token):
-    creation_time = datetime.datetime.now().isoformat()
+def _store_token(token: str) -> None:
+    creation_time = datetime.datetime.now()  # noqa: DTZ005
 
     with _file.open("w") as fp:
-        data = dict(token=token, created=creation_time)
+        data = {
+            "token": token,
+            "created": creation_time.isoformat(),
+        }
         json.dump(data, fp)
 
 
 def _read_token() -> tuple[str, bool]:
     with _file.open("r") as fp:
         data = json.load(fp)
-        assert "token" in data
-        assert "created" in data
 
     if not ENABLE_ROTATION:
         return data["token"], False
 
     creation_time = datetime.datetime.fromisoformat(data["created"])
-    current_time = datetime.datetime.now()
+    current_time = datetime.datetime.now()  # noqa: DTZ005
     expired = current_time - creation_time > LIFE_SPAN
 
     return data["token"], expired
 
 
 def get_secret_token() -> str:
-    """Returns secret token as string"""
+    """Return the secret token to enable user storage.
+
+    Returns:
+        str: the secret token
+
+    """
     if not _file.exists():
         new_token = _new_token()
         _store_token(new_token)

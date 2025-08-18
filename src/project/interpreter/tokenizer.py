@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from collections.abc import Generator
 
 
-def group(pat: str, *, name="", capture=False) -> str:
+def _group(pat: str, *, name: str = "", capture: bool = False) -> str:
     if name:
         return f"(?P<{name}>{pat})"
     if capture:
@@ -17,16 +17,16 @@ def group(pat: str, *, name="", capture=False) -> str:
     return f"(?:{pat})"
 
 
-def optional(pat: str) -> str:
-    return group(pat) + "?"
+def _optional(pat: str) -> str:
+    return _group(pat) + "?"
 
 
-def many(pat: str) -> str:
-    return group(pat) + "*"
+def _many(pat: str) -> str:
+    return _group(pat) + "*"
 
 
-def construct_pattern(patterns: dict[str, str]) -> re.Pattern:
-    pattern = group("|".join(group(val, name=key) for key, val in patterns.items()))
+def _construct_pattern(patterns: dict[str, str]) -> re.Pattern:
+    pattern = _group("|".join(_group(val, name=key) for key, val in patterns.items()))
     return re.compile(pattern)
 
 
@@ -42,10 +42,19 @@ patterns = {
 }
 
 
-pattern = construct_pattern(patterns)
+pattern = _construct_pattern(patterns)
 
 
 def tokenize(content: str) -> Generator[Token, None, None]:
+    """Generate tokens from given content.
+
+    Args:
+        content (str): user input
+
+    Yields:
+        Generator[Token, None, None]: tokens released by the tokenizer
+
+    """
     for match in pattern.finditer(content):
         key, value = match.lastgroup, match.group()
         yield Token(value, str(key))
