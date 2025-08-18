@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from nicegui import app, ui
+from nicegui import ui
 
 from project.pages import _examples, editor, homepage, how_to_use
 from project.storage_secret import get_secret_token
