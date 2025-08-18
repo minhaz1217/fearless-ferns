@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 DEBUG = False
 
 DEFAULT_EDITOR_VALUE = """
-'<div>⏬</div><div>👨〰Likes〰👩\u200d🦰</div><div>👨➡Loves➡👴</div><div>👨➡Loves➡👩\u200d🦳</div><div>👨➡👨\u200d🎓</div><div>👨\u200d🎓➡🤑</div><div>👴➡Family➡👩\u200d🦳</div><div>👩\u200d🦰➡?➡👰</div><div><br></div>'
+<div>⏬</div><div>👨〰Likes〰👩\u200d🦰</div><div>👨➡Loves➡👴</div><div>👨➡Loves➡👩\u200d🦳</div><div>👨➡👨\u200d🎓</div><div>👨\u200d🎓➡🤑</div><div>👴➡Family➡👩\u200d🦳</div><div>👩\u200d🦰➡?➡👰</div><div><br></div>
 """
 
 
