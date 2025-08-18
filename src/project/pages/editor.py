@@ -32,6 +32,7 @@ class UpdatedMermaid(ui.mermaid, component="../components/updated_mermaid.js"):
 
 async def index():
     await ui.context.client.connected(timeout=10.0)
+    app.storage.tab.setdefault("editor.value", app.storage.user.get("editor.value"))
 
     # used by emoji keyboard
     def insert(text):
