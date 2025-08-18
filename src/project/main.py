@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-import uuid
-
 from nicegui import ui
 
 from project.pages import _examples, editor, homepage
+from project.storage_secret import get_secret_token
 
 # See https://nicegui.io/documentation/colors#custom_colors
 ui.colors(
@@ -22,9 +21,7 @@ def index() -> None:
     }
     ui.context.client.content.classes("p-0")
 
-    with (
-        ui.header().props("elevated").classes("flex py-0 items-center justify-between")
-    ):
+    with ui.header().props("elevated").classes("flex py-0 items-center justify-between"):
         with ui.row().classes("items-center gap-2"):
             ui.image(
                 "https://icon-library.com/images/python-icon-png/python-icon-png-2.jpg",
@@ -70,5 +67,5 @@ ui.run(
     port=8081,  # default is 8080
     # NOTE: On Windows reload must be disabled to make asyncio.create_subprocess_exec work (see https://github.com/zauberzeug/nicegui/issues/486)
     # required to enable `ui.storage.user`
-    storage_secret=str(uuid.uuid4()),
+    storage_secret=get_secret_token(),
 )

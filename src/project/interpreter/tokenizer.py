@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Generator
+from typing import TYPE_CHECKING
 
 from .models import Token
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 def group(pat: str, *, name="", capture=False) -> str:
