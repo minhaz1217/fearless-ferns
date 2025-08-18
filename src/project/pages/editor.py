@@ -13,15 +13,15 @@ if TYPE_CHECKING:
 # adds a label that displays mermaid code generated from user input
 DEBUG = False
 
-DEFAULT_EDITOR_VALUE = """\
-⏬
-👨〰Likes〰👩‍🦰
-👨➡Loves➡👴
-👨➡Loves➡👩‍🦳
-👨➡👨‍🎓
-👨‍🎓➡🤑
-👴➡Family➡👩‍🦳
-👩‍🦰➡?➡👰
+DEFAULT_EDITOR_VALUE = """
+⏬\n
+👨〰Likes〰👩‍🦰\n
+👨➡Loves➡👴\n
+👨➡Loves➡👩‍🦳\n
+👨➡👨‍🎓\n
+👨‍🎓➡🤑\n
+👴➡Family➡👩‍🦳\n
+👩‍🦰➡?➡👰\n
 """
 
 

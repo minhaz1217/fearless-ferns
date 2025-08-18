@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  fearless-ferns:
+    build: .
+    container_name: fearless-ferns
+    restart: unless-stopped
+    networks:
+      - minhazul-net
+
+networks:
+  minhazul-net:
+    external: true
