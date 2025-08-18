@@ -1,18 +1,12 @@
 from __future__ import annotations
 
-from html2text import html2text
 from nicegui import ui, app, ElementFilter
-from nicegui.events import Handler, ValueChangeEventArguments
-from nicegui.elements.mixins.content_element import ContentElement
-from nicegui.elements.mixins.disableable_element import DisableableElement
-from nicegui.elements.mixins.value_element import ValueElement
-from nicegui.events import Handler, ValueChangeEventArguments
 
-from project.widgets.emoji_keyboard import emoji_keyboard
 from project.interpreter import interpret, InterpretError
+from project.widgets.emoji_keyboard import emoji_keyboard
 
 
-DEBUG = True
+DEBUG = False
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
@@ -30,13 +24,13 @@ class UpdatedMermaid(ui.mermaid, component="../components/updated_mermaid.js"):
 async def index():
     await ui.context.client.connected(timeout=10.0)
 
-    def insert_emoji(emoji, event):
+    def insert_emoji(emoji):
         editor.run_method("insertTextAtCursor", emoji)
 
     def on_save(e):
         app.storage.user["editor.value"] = e.args
         ui.notify("Content is saved", type="positive")
-    
+
     def backward(value: str):
         try:
             content = interpret(value)

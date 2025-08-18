@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 import random
-from collections.abc import Callable
+from typing import Callable
 from functools import partial
 
 import emoji
 from nicegui import ui
-from nicegui.events import ClickEventArguments
 
 from project.models.Emojis import Emojis
 
@@ -37,7 +36,7 @@ EMOJI_DEFAULT = "😀"
 
 def emoji_keyboard(
     *,
-    on_click: Callable[[str, ClickEventArguments]] | None = None,
+    on_click: Callable[[str]] | None = None,
     visible=False,
 ):
     with ui.row(wrap=False) as container:

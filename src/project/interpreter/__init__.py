@@ -7,7 +7,7 @@ from .interpret import interpret, InterpretError
 __all__ = [
     "Token",
     "cleanup",
-    "tokenizer",
+    "tokenize",
     "parse",
     "interpret",
     "InterpretError",

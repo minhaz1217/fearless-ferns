@@ -9,7 +9,7 @@ from project.models.Emojis import Emojis
 
 
 class InterpretError(ValueError):
-    """Raised when the code in the editor is malformed"""    
+    """Raised when the code in the editor is malformed"""
 
 
 def interpret(content: str):

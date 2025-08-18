@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import uuid
-
 import project.pages._examples as _examples
 import project.pages.editor as editor
 import project.pages.homepage as homepage
