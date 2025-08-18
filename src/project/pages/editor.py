@@ -6,28 +6,40 @@ from project.interpreter import interpret, InterpretError
 from project.widgets.emoji_keyboard import emoji_keyboard
 
 
+# adds a label that displays mermaid code generated from user input
 DEBUG = False
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
 class CustomEditor(ui.editor, component="../components/extended_editor.vue"):
-    def apply_styles(self):
+    """Modified version of nicegui WYSIWYG editor with many buttons added to the toolbar"""
+    
+    def apply_styles(self) -> CustomEditor:
+        """Applies styles to give the editor the desired appearance.
+
+        Returns itself
+        """
         return self.classes("size-full flex flex-nowrap flex-col items-stretch").props('content-class="grow"')
 
 
-# Custom mermaid element that uses a newer version rather than the fixed version
-# provided by nicegui
+# nicegui mermaid object has a fixed version that is less than 11.3
+# This particular version supports syntax like A@{ shape: rect, label: 'A' }
+# This class defines a custom mermaid element that shares the same behaviour as the original
+# but using a custom component that loads the required version from a cdn
 class UpdatedMermaid(ui.mermaid, component="../components/updated_mermaid.js"):
-    pass
+    """Mermaid element that uses a newer version"""    
 
 
 async def index():
     await ui.context.client.connected(timeout=10.0)
 
-    def insert_emoji(emoji):
-        editor.run_method("insertTextAtCursor", emoji)
+    # used by emoji keyboard
+    def insert(text):
+        """Uses javascript to insert text at the cursor/caret of the editor"""
+        editor.run_method("insertTextAtCursor", text)
 
     def on_save(e):
+        """Saves the code to the user storage overriding any previous value"""
         app.storage.user["editor.value"] = e.args
         ui.notify("Content is saved", type="positive")
 
@@ -51,7 +63,7 @@ async def index():
                     .on("save", on_save)
                     .on("toggle:keyboard", lambda e: keyboard.set_visibility(e.args))
                 )
-                keyboard = emoji_keyboard(on_click=insert_emoji).classes(
+                keyboard = emoji_keyboard(on_click=insert).classes(
                     "h-2/5 absolute bottom-0 inset-x-0 border bg-white"
                 )
 
