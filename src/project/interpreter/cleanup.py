@@ -13,8 +13,8 @@ def cleanup(content: str) -> str:
 
 def clean_emoji(emo: str, *, replace_underscores=False) -> str:
     result = emo.replace(" ", "").replace(":", "")
-    
+
     if replace_underscores:
         result = result.replace("_", " ")
-    
+
     return result
