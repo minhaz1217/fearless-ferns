@@ -1,4 +1,3 @@
-
 from nicegui import html, ui
 
 
@@ -21,23 +20,27 @@ def text_elements() -> None:
 
     ui.restructured_text("This is **reStructuredText**.")
 
-    ui.mermaid("""
+    ui.mermaid(
+        """
     graph LR;
         A --> B;
         A --> C;
-    """)
+    """,
+    )
 
     ui.html("This is <strong>HTML</strong>.")
 
     with html.section().style("font-size: 120%"):
-        html.strong("This is bold.") \
-            .classes("cursor-pointer") \
-            .on("click", lambda: ui.notify("Bold!"))
+        html.strong("This is bold.").classes("cursor-pointer").on(
+            "click",
+            lambda: ui.notify("Bold!"),
+        )
         html.hr()
         html.em("This is italic.").tooltip("Nice!")
         with ui.row():
             html.img().props("src=https://placehold.co/60")
             html.img(src="https://placehold.co/60")
+
 
 def controls() -> None:
     ui.button("Click me!", on_click=lambda: ui.notify("You clicked me!"))
@@ -64,7 +67,10 @@ def controls() -> None:
         ui.fab_action("sailing", on_click=lambda: ui.notify("Boat"))
         ui.fab_action("rocket", on_click=lambda: ui.notify("Rocket"))
 
-    with ui.button("Click me!", on_click=lambda: badge.set_text(str(int(badge.text) + 1))):
+    with ui.button(
+        "Click me!",
+        on_click=lambda: badge.set_text(str(int(badge.text) + 1)),
+    ):
         badge = ui.badge("0", color="red").props("floating")
 
     with ui.row().classes("gap-1"):
@@ -75,13 +81,13 @@ def controls() -> None:
         ui.chip("Disabled", icon="block", color="red").set_enabled(False)
 
     toggle1 = ui.toggle([1, 2, 3], value=1)
-    ui.toggle({1: "A", 2: "B", 3: "C"}).bind_value(toggle1, "value")
+    toggle2 = ui.toggle({1: "A", 2: "B", 3: "C"}).bind_value(toggle1, "value")
 
     radio1 = ui.radio([1, 2, 3], value=1).props("inline")
-    ui.radio({1: "A", 2: "B", 3: "C"}).props("inline").bind_value(radio1, "value")
+    radio2 = ui.radio({1: "A", 2: "B", 3: "C"}).props("inline").bind_value(radio1, "value")
 
     select1 = ui.select([1, 2, 3], value=1)
-    ui.select({1: "One", 2: "Two", 3: "Three"}).bind_value(select1, "value")
+    select2 = ui.select({1: "One", 2: "Two", 3: "Three"}).bind_value(select1, "value")
 
     ui.input_chips("My favorite chips", value=["Pringles", "Doritos", "Lay's"])
 
@@ -95,35 +101,55 @@ def controls() -> None:
     ui.label().bind_text_from(slider, "value")
 
     min_max_range = ui.range(min=0, max=100, value={"min": 20, "max": 80})
-    ui.label().bind_text_from(min_max_range, "value",
-                            backward=lambda v: f'min: {v["min"]}, max: {v["max"]}')
+    ui.label().bind_text_from(
+        min_max_range,
+        "value",
+        backward=lambda v: f"min: {v['min']}, max: {v['max']}",
+    )
 
     ui.rating(value=4)
 
     ui.joystick(
-        color="blue", size=50,
+        color="blue",
+        size=50,
         on_move=lambda e: coordinates.set_text(f"{e.x:.3f}, {e.y:.3f}"),
         on_end=lambda _: coordinates.set_text("0, 0"),
     ).classes("bg-slate-300")
     coordinates = ui.label("0, 0")
 
-    ui.input(label="Text", placeholder="start typing",
-            on_change=lambda e: result.set_text("you typed: " + e.value),
-            validation={"Input too long": lambda value: len(value) < 20})
+    ui.input(
+        label="Text",
+        placeholder="start typing",
+        on_change=lambda e: result.set_text("you typed: " + e.value),
+        validation={"Input too long": lambda value: len(value) < 20},
+    )
     result = ui.label()
 
-    ui.textarea(label="Text", placeholder="start typing",
-                on_change=lambda e: result.set_text("you typed: " + e.value))
+    ui.textarea(
+        label="Text",
+        placeholder="start typing",
+        on_change=lambda e: result.set_text("you typed: " + e.value),
+    )
     result = ui.label()
 
     editor = ui.codemirror('print("Edit me!")', language="Python").classes("h-32")
-    ui.select(editor.supported_languages, label="Language", clearable=True) \
-        .classes("w-32").bind_value(editor, "language")
-    ui.select(editor.supported_themes, label="Theme") \
-        .classes("w-32").bind_value(editor, "theme")
+    ui.select(editor.supported_languages, label="Language", clearable=True).classes(
+        "w-32",
+    ).bind_value(
+        editor,
+        "language",
+    )
+    ui.select(editor.supported_themes, label="Theme").classes("w-32").bind_value(
+        editor,
+        "theme",
+    )
 
-    ui.number(label="Number", value=3.1415927, format="%.2f",
-            on_change=lambda e: result.set_text(f"you entered: {e.value}"))
+    ui.number(
+        label="Number",
+        value=3.1415927,
+        format="%.2f",
+        on_change=lambda e: result.set_text(f"you entered: {e.value}"),
+    )
     result = ui.label()
 
     knob = ui.knob(0.3, show_value=True)
@@ -132,8 +158,11 @@ def controls() -> None:
         ui.icon("volume_up")
 
     label = ui.label("Change my color!")
-    ui.color_input(label="Color", value="#000000",
-                on_change=lambda e: label.style(f"color:{e.value}"))
+    ui.color_input(
+        label="Color",
+        value="#000000",
+        on_change=lambda e: label.style(f"color:{e.value}"),
+    )
 
     with ui.button(icon="colorize") as button:
         ui.color_picker(on_pick=lambda e: button.classes(f"!bg-[{e.color}]"))
@@ -161,14 +190,16 @@ def index() -> None:
         with ui.column():
             audiovisual()
         with ui.column():
-            ui.button("Copy to clipboard") \
-                .on("click", js_handler="""() => navigator.clipboard.writeText("Hello, NiceGUI!")""")
+            ui.button("Copy to clipboard").on(
+                "click",
+                js_handler="""() => navigator.clipboard.writeText("Hello, NiceGUI!")""",
+            )
 
 
 if __name__ == "__main__":
     ui.run(
-        # [Errno 13] error while attempting to bind on address ('0.0.0.0', 8080): [winerror 10013] an attempt was made to access a socket in a way forbidden by its access permissions
+        # [Errno 13] error while attempting to bind on address ('0.0.0.0', 8080): [winerror 10013]
+        # an attempt was made to access a socket in a way forbidden by its access permissions
         port=8081,  # default to 8080
         # NOTE: On Windows reload must be disabled to make asyncio.create_subprocess_exec work (see https://github.com/zauberzeug/nicegui/issues/486)
-        # reload=platform.system() != "Windows",
     )
