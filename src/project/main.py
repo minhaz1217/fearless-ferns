@@ -16,8 +16,7 @@ ui.colors(
 def index() -> None:
     """Starter function."""
     header_links = {
-        "Home": "/",
-        "Editor": "/editor",
+        "Editor": "/",
     }
     ui.context.client.content.classes("p-0")
 
@@ -37,7 +36,7 @@ def index() -> None:
     # See https://nicegui.io/documentation/sub_pages
     ui.sub_pages(
         {
-            "/": homepage.index,
+            "/": homepage.index,  # redirects to editor page
             "/editor": editor.index,
             "/_widgets": _examples.index,
         },
