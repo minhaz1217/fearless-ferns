@@ -81,13 +81,13 @@ def controls() -> None:
         ui.chip("Disabled", icon="block", color="red").set_enabled(False)
 
     toggle1 = ui.toggle([1, 2, 3], value=1)
-    ui.toggle({1: "A", 2: "B", 3: "C"}).bind_value(toggle1, "value")
+    toggle2 = ui.toggle({1: "A", 2: "B", 3: "C"}).bind_value(toggle1, "value")
 
     radio1 = ui.radio([1, 2, 3], value=1).props("inline")
-    ui.radio({1: "A", 2: "B", 3: "C"}).props("inline").bind_value(radio1, "value")
+    radio2 = ui.radio({1: "A", 2: "B", 3: "C"}).props("inline").bind_value(radio1, "value")
 
     select1 = ui.select([1, 2, 3], value=1)
-    ui.select({1: "One", 2: "Two", 3: "Three"}).bind_value(select1, "value")
+    select2 = ui.select({1: "One", 2: "Two", 3: "Three"}).bind_value(select1, "value")
 
     ui.input_chips("My favorite chips", value=["Pringles", "Doritos", "Lay's"])
 
