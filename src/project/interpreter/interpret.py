@@ -8,6 +8,10 @@ import html2text
 from project.models.Emojis import Emojis
 
 
+class InterpretError(ValueError):
+    """Raised when the code in the editor is malformed"""    
+
+
 def interpret(content: str):
     flowchart_direction_emojis = [
         Emojis.top_to_bottom,
@@ -125,12 +129,14 @@ def interpret(content: str):
                 "First line should contain one of the following emojis to indicate the direction "
                 + str.join(", ", flowchart_direction_emojis)
             )
+            raise InterpretError(error_message)
 
         direction_string = first_line_emoji_to_text(first_line)
         if direction_string != "":
             flow_chart.append(direction_string)
         else:
             error_message = "Please follow the instruction for the first line"
+            raise InterpretError(error_message)
 
         for line in lines[1:]:
             if not line:

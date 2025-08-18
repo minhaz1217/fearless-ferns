@@ -2,7 +2,7 @@ from .models import Token
 from .cleanup import cleanup
 from .tokenizer import tokenize
 from .parse import parse
-from .interpret import interpret
+from .interpret import interpret, InterpretError
 
 __all__ = [
     "Token",
@@ -10,4 +10,5 @@ __all__ = [
     "tokenizer",
     "parse",
     "interpret",
+    "InterpretError",
 ]

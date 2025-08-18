@@ -9,7 +9,7 @@ from nicegui.elements.mixins.value_element import ValueElement
 from nicegui.events import Handler, ValueChangeEventArguments
 
 from project.widgets.emoji_keyboard import emoji_keyboard
-from project.interpreter import interpret
+from project.interpreter import interpret, InterpretError
 
 
 DEBUG = True
@@ -36,6 +36,15 @@ async def index():
     def on_save(e):
         app.storage.user["editor.value"] = e.args
         ui.notify("Content is saved", type="positive")
+    
+    def backward(value: str):
+        try:
+            content = interpret(value)
+            return content
+        except InterpretError as e:
+            error_message = e.args[0]
+            ui.notify(error_message, type="negative")
+            return ""
 
     with ui.splitter().classes("size-full") as splitter:
         # LEFT: CustomEditor
@@ -64,5 +73,5 @@ async def index():
         with splitter.after:
             with ui.column(align_items="center").classes("justify-center size-full"):
                 if DEBUG:
-                    ui.label().bind_text_from(editor, "value", backward=interpret)
-                UpdatedMermaid(editor.value).bind_content_from(editor, "value", backward=interpret)
+                    ui.label().bind_text_from(editor, "value", backward=backward)
+                UpdatedMermaid(editor.value).bind_content_from(editor, "value", backward=backward)
