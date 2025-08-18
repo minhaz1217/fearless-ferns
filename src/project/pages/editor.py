@@ -13,6 +13,17 @@ if TYPE_CHECKING:
 # adds a label that displays mermaid code generated from user input
 DEBUG = False
 
+DEFAULT_EDITOR_VALUE = """\
+⏬
+👨〰Likes〰👩‍🦰
+👨➡Loves➡👴
+👨➡Loves➡👩‍🦳
+👨➡👨‍🎓
+👨‍🎓➡🤑
+👴➡Family➡👩‍🦳
+👩‍🦰➡?➡👰
+"""
+
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
 class CustomEditor(ui.editor, component="../components/extended_editor.vue"):
@@ -39,7 +50,9 @@ class UpdatedMermaid(ui.mermaid, component="../components/updated_mermaid.js"):
 async def index() -> None:
     """Root method for this page."""
     await ui.context.client.connected(timeout=10.0)
-    app.storage.tab.setdefault("editor.value", app.storage.user.get("editor.value"))
+
+    # loads stored editor value. Editor value is bound to storage.tab
+    app.storage.tab.setdefault("editor.value", app.storage.user.get("editor.value", DEFAULT_EDITOR_VALUE))
 
     # used by emoji keyboard
     def insert(text: str) -> None:
