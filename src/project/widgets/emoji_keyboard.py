@@ -1,16 +1,29 @@
 from __future__ import annotations
 
-from functools import partial
 import random
-from typing import Callable
+from collections.abc import Callable
+from functools import partial
 
+import emoji
 from nicegui import ui
 from nicegui.events import ClickEventArguments
-import emoji
 
+from project.models.Emojis import Emojis
 
 # Changed lists to string because they become ugly when formatted
 emojies = {
+    Emojis.left_to_right: str.join(
+        " ",
+        [
+            Emojis.top_to_bottom,
+            Emojis.bottom_to_top,
+            Emojis.left_to_right,
+            Emojis.right_to_left,
+            Emojis.arrow,
+            Emojis.thick_arrow,
+            Emojis.dashed_arrow,
+        ],
+    ),
     "😀": "😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😜 🤪 😝 🤑 🤗 🤭 🤫 🤔 😐 😑 😶",
     "😢": "😏 😒 🙄 😬 😮‍💨 😔 😪 😴 😷 🤒 🤕 🤢 🤮 🥵 🥶 😵 🤯 😳 🥺 😢 😭 😤 😠 😡 🤬",
     "👍": "👍 👎 👊 ✊ 🤛 🤜 👏 🙌 👐 🤲 🤝 🙏 ✍️ 💪 🖖 🤘 👌 ✌️ 🤞 🫶",
@@ -37,7 +50,9 @@ def emoji_keyboard(
                 with ui.tab_panel(tab), ui.row().mark("emoji-content"):
                     for emo in emojies[key].split():
                         handler = partial(on_click, emo) if on_click is not None else None
-                        with ui.button(emo, on_click=handler).props("outline rounded color=black"):
+                        with ui.button(emo, on_click=handler).props(
+                            "outline rounded color=black",
+                        ):
                             ui.tooltip(emoji.demojize(emo))
 
     container.set_visibility(visible)
