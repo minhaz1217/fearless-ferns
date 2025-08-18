@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import random
 from functools import partial
 from typing import TYPE_CHECKING
 
@@ -40,14 +39,25 @@ EMOJI_DEFAULT = "😀"
 def emoji_keyboard(
     *,
     on_click: Callable[[str]] | None = None,
-    visible=True,
-):
+    visible: bool = True,
+) -> ui.row:
+    """Build the emoji keyboard and return it to the caller.
+
+    Args:
+        on_click (Callable[[str]] | None, optional):
+            A callback that is called when buttons are pressed. The emoji is passed as an argument.
+            Defaults to None.
+        visible (bool, optional): whether this keyboard is visible. Defaults to True.
+
+    Returns:
+        ui.row: The keyboard widget container
+
+    """
     with ui.row(wrap=False) as container:
         with ui.tabs().props("vertical").classes("h-full") as tabs:
             inner_tabs = {emo: ui.tab(emo) for emo in emojies}
 
-        value = random.choice(list(inner_tabs))
-        with ui.tab_panels(tabs, value=value).props("vertical").classes("h-full grow"):
+        with ui.tab_panels(tabs, value=EMOJI_DEFAULT).props("vertical").classes("h-full grow"):
             for key, tab in inner_tabs.items():
                 with ui.tab_panel(tab), ui.row().mark("emoji-content"):
                     for emo in emojies[key].split():
