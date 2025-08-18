@@ -8,6 +8,9 @@ __pycache__/
 # Byproduct of $ pip install -e .
 src/code_jam_template.egg-info
 
+# Storage secret token
+secret_token.json
+
 # Environment specific
 .venv
 venv

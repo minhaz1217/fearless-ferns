@@ -5,6 +5,7 @@ import uuid
 import project.pages._examples as _examples
 import project.pages.editor as editor
 import project.pages.homepage as homepage
+from project.storage_secret import get_secret_token
 from nicegui import ui
 
 
@@ -46,5 +47,5 @@ ui.run(
     # NOTE: On Windows reload must be disabled to make asyncio.create_subprocess_exec work (see https://github.com/zauberzeug/nicegui/issues/486)
     # reload=platform.system() != "Windows",
     # required to enable `ui.storage.user`
-    storage_secret=str(uuid.uuid4()),
+    storage_secret=get_secret_token(),
 )
