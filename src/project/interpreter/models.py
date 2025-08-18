@@ -25,19 +25,19 @@ class Emote(NamedTuple):
         def reduce_emotes(emote1: Emote, emote2: Emote) -> Emote:
             if emote1.is_emoji():
                 raise TypeError()
-            
+
             if emote2.is_emoji():
                 return emote1
-            
+
             return cls(
-                emote1.value + ' ' + emote2.value,
+                emote1.value + " " + emote2.value,
                 (emote1.anger + emote2.anger) / 2,
                 emote1.number,
                 emote1.bold,
                 emote1.emph,
                 emote1.strike,
             )
-        
+
         try:
             return reduce(reduce_emotes, emotes)
         except TypeError:
