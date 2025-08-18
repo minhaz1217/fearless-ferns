@@ -94,7 +94,7 @@ async def index() -> None:
         with splitter.after, ui.column(align_items="center").classes("justify-center size-full"):
             if DEBUG:
                 ui.label().bind_text_from(editor, "value", backward=backward)
-            UpdatedMermaid(editor.value).bind_content_from(
+            UpdatedMermaid(editor.value or "").bind_content_from(
                 editor,
                 "value",
                 backward=backward,
