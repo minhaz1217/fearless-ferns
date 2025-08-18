@@ -18,5 +18,5 @@ EXPOSE 8001
 # Set the default command to run the NiceGUI app
 CMD ["python", "src/project/main.py"]
 
-# docker build -t i_ff .
-# docker run -dit --name fearless_ferns -p8081:8081 i_ff
+# docker build -t fearless_ferns_image .
+# docker run -dit --name fearless_ferns -p8081:8081 fearless_ferns_image
