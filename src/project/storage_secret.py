@@ -5,7 +5,6 @@ import json
 import pathlib
 import uuid
 
-
 # The code for migrating data from old token to new token is not added yet
 ENABLE_ROTATION = False
 "Whether to replace tokens after certain amount of time"
@@ -52,9 +51,7 @@ def _read_token() -> tuple[str, bool]:
 
 
 def get_secret_token() -> str:
-    """
-    Returns secret token as string
-    """
+    """Returns secret token as string"""
     if not _file.exists():
         new_token = _new_token()
         _store_token(new_token)

@@ -2,17 +2,18 @@ from __future__ import annotations
 
 import random
 import re
-from typing import Generator
+from typing import TYPE_CHECKING
 
-from .models import Token, Emote
-from .nlp import identify_emoji, EmojiCategory
+from .models import Emote, Token
+from .nlp import EmojiCategory, identify_emoji
 from .tokenizer import tokenize
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 def parse(content: str, *, anger=10.0) -> Generator[Emote, None, None]:
-    """
-    Emotional parsing function. Generates emotes
-    """
+    """Emotional parsing function. Generates emotes"""
     bold = False
     emph = False  # emphasis: italic or underline
     strike = False
@@ -54,7 +55,7 @@ def parse(content: str, *, anger=10.0) -> Generator[Emote, None, None]:
                     number = round(float(value))
                 except ValueError:
                     number = 0
-                    anger += int(len(value.replace(".", "")))
+                    anger += len(value.replace(".", ""))
 
             case Token(value, type="U"):
                 anger += len(re.sub(r"\s", "", value))
@@ -75,17 +76,13 @@ emoji_relief_factor: dict[EmojiCategory, float] = {
 
 
 def emoji_relief(anger: float, emo: str) -> float:
-    """
-    Relieves the parser's anger by the effect of emojies.
-    """
+    """Relieves the parser's anger by the effect of emojies."""
     (cat, rat), _ = identify_emoji(emo)
     return anger - emoji_relief_factor[cat] * rat
 
 
 def word_relief(anger: float, word: str) -> float:
-    """
-    Relieves the parser's anger by the effect of a pseudo-emoji made from words. The effect is less pronounced however
-    """
+    """Relieves the parser's anger by the effect of a pseudo-emoji made from words. The effect is less pronounced however"""
     pseudo_emoji = f":{word}:"
     (cat, rat), _ = identify_emoji(pseudo_emoji)
     return anger - emoji_relief_factor[cat] * rat * 0.1

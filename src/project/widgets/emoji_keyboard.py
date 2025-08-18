@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import random
-from typing import Callable
 from functools import partial
+from typing import TYPE_CHECKING
 
 import emoji
 from nicegui import ui
 
 from project.models.Emojis import Emojis
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 # Changed lists to string because they become ugly when formatted
 emojies = {

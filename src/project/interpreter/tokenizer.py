@@ -1,18 +1,20 @@
 from __future__ import annotations
 
 import re
-from typing import Generator
+from typing import TYPE_CHECKING
 
 from .models import Token
+
+if TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 def group(pat: str, *, name="", capture=False) -> str:
     if name:
         return f"(?P<{name}>{pat})"
-    elif capture:
+    if capture:
         return f"({pat})"
-    else:
-        return f"(?:{pat})"
+    return f"(?:{pat})"
 
 
 def optional(pat: str) -> str:
