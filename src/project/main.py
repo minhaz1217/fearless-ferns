@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from nicegui import ui
+from nicegui import app, ui
 
-from project.pages import _examples, editor, homepage
+from project.pages import _examples, editor, homepage, how_to_use
 from project.storage_secret import get_secret_token
 
 # See https://nicegui.io/documentation/colors#custom_colors
@@ -17,10 +17,13 @@ def index() -> None:
     """Starter function."""
     header_links = {
         "Editor": "/",
+        "How To Use": "/how-to-use",
     }
     ui.context.client.content.classes("p-0")
 
-    with ui.header().props("elevated").classes("flex py-0 items-center justify-between"):
+    with (
+        ui.header().props("elevated").classes("flex py-0 items-center justify-between")
+    ):
         with ui.row().classes("items-center gap-2"):
             ui.image(
                 "https://icon-library.com/images/python-icon-png/python-icon-png-2.jpg",
@@ -39,6 +42,7 @@ def index() -> None:
             "/": homepage.index,  # redirects to editor page
             "/editor": editor.index,
             "/_widgets": _examples.index,
+            "/how-to-use": how_to_use.index,
         },
     ).classes("h-[90vh] w-full")
 
