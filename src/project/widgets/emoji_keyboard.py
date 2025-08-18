@@ -24,8 +24,8 @@ EMOJI_DEFAULT = "😀"
 
 def emoji_keyboard(
     *,
-    on_click: Callable[[str, ClickEventArguments]] | None = None,
-    visible=False,
+    on_click: Callable[[str]] | None = None,
+    visible=True,
 ):
     with ui.row(wrap=False) as container:
         with ui.tabs().props("vertical").classes("h-full") as tabs:
