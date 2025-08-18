@@ -13,16 +13,7 @@ if TYPE_CHECKING:
 # adds a label that displays mermaid code generated from user input
 DEBUG = False
 
-DEFAULT_EDITOR_VALUE = """\
-⏬
-👨〰Likes〰👩‍🦰
-👨➡Loves➡👴
-👨➡Loves➡👩‍🦳
-👨➡👨‍🎓
-👨‍🎓➡🤑
-👴➡Family➡👩‍🦳
-👩‍🦰➡?➡👰
-"""
+DEFAULT_EDITOR_VALUE = ""
 
 
 # based on `ui.editor` and these examples https://quasar.dev/vue-components/editor
