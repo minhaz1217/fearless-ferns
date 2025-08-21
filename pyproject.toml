@@ -1,7 +1,7 @@
 [project]
 # This section contains metadata about your project.
-name = "fearless-ferns"
-description = "An Emoji Flowchar Builder"
+name = "fearless-ferns"  # name of the team
+description = "Emoji Flowchart Builder: Build flowcharts from emojies"  # description
 authors = [
     { name = "Saad" },
     { name = "Minhaz" },
