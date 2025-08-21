@@ -3,8 +3,8 @@
 name = "fearless-ferns"
 description = "An Emoji Flowchar Builder"
 authors = [
-    { name = "Minhaz" },
     { name = "Saad" },
+    { name = "Minhaz" },
     { name = "NaviTheCoderboi" },
     { name = "Apoorv" },
     { name = "Rabbiya" },
