@@ -4,10 +4,7 @@ An online tool where you use emojies to make a flowchart.
 
 ## 🌀 The Story of Emoji Flowchart Builder
 
-It all started at a Python Code Jam, where the theme was:
-
-> “Wrong Tool for the Job.”
-
+It all started at a Python Code Jam, where the theme was: “Wrong Tool for the Job.”
 Our team looked at each other and thought:
 
 > “What could be more wrong than using Python to run in the browser… inside WebAssembly?”
@@ -46,13 +43,15 @@ If you don't have a docker installed, do the following:
 
 ### 0. Clone the repo
 
-Assuming you have git installed
+> Note: this assumes you have git installed
+
+Navigate to the desired location and clone this repository
 
 ```shell
 git clone https://github.com/minhaz1217/fearless-ferns
 ```
 
-Navigate to the newly created folder
+Then, navigate to the newly created folder
 
 ```shell
 cd fearless-ferns
@@ -77,7 +76,7 @@ $ .venv/bin/Activate.ps1
 
 ### 2. Install the dependencies
 
-You may consider updating your `pip` (and other stuff) first
+It is recommended to update your `pip` (and other stuff) first
 
 ```shell
 pip install -U pip setuptools wheel
@@ -91,7 +90,7 @@ pip install -r requirements.txt
 
 ### 3. Install as a package
 
-We structured our project in a way that makes it work as a package. This step is necessary, sorry.
+We structured our project in a way that makes it works as a package. This step is necessary, sorry.
 
 ```shell
 pip install -e .
@@ -110,6 +109,10 @@ The project will be locally hosted on port `:8081`.
 We will discuss its functionality next.
 
 ## How to use
+
+### Accessing the app
+
+Upon running this project, it will be hosted at [http:127.0.0.1:8081](http:127.0.0.1:8081).
 
 ### Description of the UI
 
@@ -178,7 +181,12 @@ Any code you have in any other tab will not be overriden.
 
 ## About the project
 
-This project is done as part of python discord code jam 12.
-The code jam (CJ) is about python in the browser.
-The theme for this code jam (CJ) is "wrong tool for the job".
-With that said, we came up with the idea of a flowchart builder tool.
+This project was built by `Fearless Ferns` team as part of the Python Discord Code Jam 2025. These are the team members and their main contributions:
+
+|Name|Main contributions|
+|--|--|
+| Saad | Emoji keyboard, The text editor |
+| Minhaz | The final emoji interpreter |
+| NaviTheCoderboi | UI styles |
+| Rabbiya | The interpreter |
+| Apoorv |  |

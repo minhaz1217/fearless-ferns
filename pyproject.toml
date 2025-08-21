@@ -6,8 +6,8 @@ authors = [
     { name = "Saad" },
     { name = "Minhaz" },
     { name = "NaviTheCoderboi" },
-    { name = "Apoorv" },
     { name = "Rabbiya" },
+    { name = "Apoorv" },
 ]
 version = "0.1.0"
 readme = "README.md"
