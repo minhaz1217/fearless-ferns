@@ -45,16 +45,21 @@ And that’s how our team — Minhaz, Saad, NaviTheCoderboi, Apoorv, and Rabbiya
 If you don't have a docker installed, do the following:
 
 ### 0. Clone the repo
+
 Assuming you have git installed
+
 ```shell
 git clone https://github.com/minhaz1217/fearless-ferns
 ```
+
 Navigate to the newly created folder
+
 ```shell
 cd fearless-ferns
 ```
 
 ### 1. Activate python virtual environment
+
 ```shell
 # Linux, Bash
 $ source .venv/bin/activate
@@ -71,26 +76,35 @@ $ .venv/bin/Activate.ps1
 ```
 
 ### 2. Install the dependencies
+
 You may consider updating your `pip` (and other stuff) first
+
 ```shell
 pip install -U pip setuptools wheel
 ```
+
 Then proceed to install all the dependencies
+
 ```shell
 pip install -r requirements.txt
 ```
 
 ### 3. Install as a package
+
 We structured our project in a way that makes it work as a package. This step is necessary, sorry.
+
 ```shell
 pip install -e .
 ```
 
 ### 4. Running the project
+
 Here you go
+
 ```shell
 python src/project/main.py
 ```
+
 If done correctly, this will open up a new tab in your default browser.
 The project will be locally hosted on port `:8081`.
 We will discuss its functionality next.
@@ -110,20 +124,24 @@ When you type anything in the editor, the flowchart will update automatically.
 It will draw a new flowchart if your code is valid, and might show you a specific error as a notification.
 
 ### About the rules
+
 While you are running the project locally, navigate to the `/how-to-use` page using the link in the header and have a look at the rules.
 Here are some facts:
 
 #### **Each unique emoji identifies a unique cell in the flowchart**
+
 You might have noticed that already looking at the example already written in the editor when you open the page for the first time.
 
 ### Functionality
 
 #### **The page is split using a splitter**
+
 By default each compartment (the editor and the flowchart) take half the width of the screen.
 You can resize each compartment using the splitter line in the middle.
 Go ahead and try that!
 
 #### **Use the toolbar to apply some formatting to your emoji-containing code**
+
 Try making a statement **bold**, another in _italic_.
 Try aligning text to center or to the right.
 Try messing up the size of some text.
@@ -135,11 +153,13 @@ Even better, try entering fullscreen mode so you can focus while typing in your 
 Try printing your code.
 
 #### **Downloading your flowchart**
+
 Who needs a download button when you can just take a screenshot!
 If you have made any funny flowchart that you want to share with your friends,
 just take a screenshot of it (or part of it) using your system utility.
 
 #### **Saving your code**
+
 As you are typing in something overly specific, your code is saved automatically in your tab, no cookies required.
 Refresh your page and your changes will always still be there.
 If you open the page in a new tab, your changes will be reset.
