@@ -2,6 +2,44 @@
 
 An online tool where you use emojies to make a flowchart.
 
+## 🌀 The Story of Emoji Flowchart Builder
+
+It all started at a Python Code Jam, where the theme was:
+
+> “Wrong Tool for the Job.”
+
+Our team looked at each other and thought:
+
+> “What could be more wrong than using Python to run in the browser… inside WebAssembly?”
+
+Minhaz, our fearless leader, said:
+
+> “Let’s do it. Let’s bend Python until it speaks the language of the web.”
+
+Saad grinned:
+
+> “And while we’re at it, let’s reinvent flowcharts… but with emojis!”
+
+NaviTheCoderboi laughed:
+
+> “Yes! Because who needs rectangles and diamonds when you can have 😃🔥🚀💡?”
+
+Apoorv, the architect, reminded us:
+
+> “It should still work though… even if it looks like fun.”
+
+And Rabbiya, the creative spark, added:
+
+> “Exactly. Flowcharts shouldn’t feel like homework, they should feel like play.”
+
+So, with the “wrong tool” in hand, we built something unexpectedly right:
+
+> ✨ Emoji Flowchart Builder ✨
+
+A Python-powered, browser-ready app where ideas flow not through dull boxes, but through the universal language of emojis.
+
+And that’s how our team — Minhaz, Saad, NaviTheCoderboi, Apoorv, and Rabbiya — turned the wrong tool for the job into the perfect tool for creativity.
+
 ## How to run
 
 If you don't have a docker installed, do the following:
