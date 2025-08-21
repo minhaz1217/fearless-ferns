@@ -1,23 +1,27 @@
 [project]
 # This section contains metadata about your project.
-# Don't forget to change the name, description, and authors to match your project!
-name = "code-jam-template"
-description = "Add your description here"
+name = "fearless-ferns"
+description = "An Emoji Flowchar Builder"
 authors = [
-    { name = "Your Name" }
+    { name = "Minhaz" },
+    { name = "Saad" },
+    { name = "NaviTheCoderboi" },
+    { name = "Apoorv" },
+    { name = "Rabbiya" },
 ]
 version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    # Here are all the dependencies that were used directly by this project
     "nicegui~=2.22",
     "html2text~=2025.4",
+    "emoji~=2.14",
+    # A list of all the pinned dependencies is provided in `requirements.txt` file
 ]
 
 [dependency-groups]
 # This `dev` group contains all the development requirements for our linting toolchain.
-# Don't forget to pin your dependencies!
-# This list will have to be migrated if you wish to use another dependency manager.
 dev = [
     "pre-commit~=4.2.0",
     "ruff~=0.12.2",
@@ -25,16 +29,12 @@ dev = [
 
 [tool.ruff]
 # Increase the line length. This breaks PEP8 but it is way easier to work with.
-# The original reason for this limit was a standard vim terminal is only 79 characters,
-# but this doesn't really apply anymore.
 line-length = 119
-# Target Python 3.12. If you decide to use a different version of Python
-# you will need to update this value.
+# Target Python 3.12.
 target-version = "py312"
 # Automatically fix auto-fixable issues.
 fix = true
-# The directory containing the source code. If you choose a different project layout
-# you will need to update this value.
+# The directory containing the source code.
 src = ["src"]
 
 [tool.ruff.lint]
