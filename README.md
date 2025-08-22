@@ -39,6 +39,49 @@ And that’s how our team — Minhaz, Saad, NaviTheCoderboi, Apoorv, and Rabbiya
 
 ## How to run
 
+### Run with docker
+
+We have a very simple docker setup for the project. You can run the project with docker.
+
+Make sure you have docker installed in your computer.
+
+### 0. Clone the repo
+
+> Note: this assumes you have git installed
+
+Navigate to the desired location and clone this repository
+
+```shell
+git clone https://github.com/minhaz1217/fearless-ferns
+```
+
+Then, navigate to the newly created folder
+
+```shell
+cd fearless-ferns
+```
+
+### 1. Build the image
+
+To build the just run this command from the root of the project
+
+```shell
+docker build -t fearless_ferns_image .
+```
+
+### 2. Run the docker image
+
+Run the docker image using this command
+
+```shell
+docker run -dit --name fearless_ferns -p8081:8081 fearless_ferns_image
+```
+If done correctly, the project will be locally hosted on port `:8081` so you can access using [localhost:8081](http://localhost:8081)
+We will discuss its functionality next.
+
+
+### Run by building from source
+
 If you don't have a docker installed, do the following:
 
 ### 0. Clone the repo
