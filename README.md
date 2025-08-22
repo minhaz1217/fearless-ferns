@@ -76,29 +76,13 @@ Run the docker image using this command
 ```shell
 docker run -dit --name fearless_ferns -p8081:8081 fearless_ferns_image
 ```
+
 If done correctly, the project will be locally hosted on port `:8081` so you can access using [localhost:8081](http://localhost:8081)
 We will discuss its functionality next.
 
-
 ### Run by building from source
 
-If you don't have a docker installed, do the following:
-
-### 0. Clone the repo
-
-> Note: this assumes you have git installed
-
-Navigate to the desired location and clone this repository
-
-```shell
-git clone https://github.com/minhaz1217/fearless-ferns
-```
-
-Then, navigate to the newly created folder
-
-```shell
-cd fearless-ferns
-```
+If you don't have a docker installed, you will still clone the repository the same way it is described in step 0 above. Then:
 
 ### 1. Activate python virtual environment
 
@@ -232,4 +216,4 @@ This project was built by `Fearless Ferns` team as part of the Python Discord Co
 | Minhaz | The final emoji interpreter |
 | NaviTheCoderboi | UI styles |
 | Rabbiya | The interpreter |
-| Apoorv |  |
+| Apoorv | Presentation |
