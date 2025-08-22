@@ -37,6 +37,8 @@ A Python-powered, browser-ready app where ideas flow not through dull boxes, but
 
 And that’s how our team — Minhaz, Saad, NaviTheCoderboi, Apoorv, and Rabbiya — turned the wrong tool for the job into the perfect tool for creativity.
 
+> Note: we also prepared a [video presentation](https://drive.google.com/file/d/1EQQ36AdgNeMUTYDcjomJ8midym5wWpvk/view?usp=sharing)
+
 ## How to run
 
 ### Run with docker
